@@ -1,0 +1,8 @@
+<div class="post">
+	</div>
+      <%= attachment_image_tag post_comment.user, :profile_image, :fill, 60, 60, fallback: "142_refileDownloadImage.png" %>
+	<li>
+	　<% if @book.user == current_user %>
+		<%= link_to "delete", book_path(@book), method: :delete %>
+	　<% end %>
+	</li>

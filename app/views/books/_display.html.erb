@@ -1,0 +1,57 @@
+<section class="sct-color-1 slice">
+</section>
+<div class="container">
+<div class="row">
+<div class="col-xs-3">
+
+<h2>User info</h2>
+   <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, fallback: "no_image.png", size:'100x100', class: "img-rounded pull-left profile-thumb" %>
+   <table class="table">
+     <tbody>
+       <tr></tr>
+       <tr>
+         <th>name</th>
+         <th><%= @user.name %></th>
+       </tr>
+       <tr>
+         <th>introduction</th>
+         <th><%= @user.introduction %></th>
+       </tr>
+     </tbody>
+    </table>
+     <div class="row">
+       <%= link_to edit_user_path(current_user), class: 'col-xs-12 btn btn-default glyphicon glyphicon-wrench' do %>
+       <% end %>
+     </div>
+
+
+
+<%= form_for( new_book, url: new_book_path) do |f| %>
+  <h2>New book</h2>
+      <div class="form-group has-icon">
+        Title
+        <%= f.text_field :title, class:"form-control" %>
+
+        Opinion
+        <%= f.text_area :body, class:"form-control" %>
+      </div>
+
+    <%= f.submit "create book", class:"btn btn-primary col-xs-12" %>
+<% end %>
+
+</div>
+
+
+
+  <% if new_book.errors.any? %>
+   <div id="erroor_explanation">
+    <h2><%= new_book.errors.count %> error
+
+    </h2>
+    <ul>
+    <% new_book.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+    <% end %>
+    </ul>
+   </div>
+  <% end %>
