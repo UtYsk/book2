@@ -20,13 +20,37 @@
      </tbody>
     </table>
      <div class="row">
-       <%= link_to edit_user_path(current_user), class: 'col-xs-12 btn btn-default glyphicon glyphicon-wrench' do %>
-       <% end %>
+        <% if @user == current_user %>
+         <%= link_to edit_user_path(current_user), class: 'col-xs-12 btn btn-default glyphicon glyphicon-wrench' do %>
+         <% end %>
+        <% else %>
+         <%= link_to user_path(current_user), class: 'col-xs-12 btn btn-default glyphicon glyphicon-wrench' do %>
+         <% end %>
+        <% end %>
+
+
+
      </div>
 
 
 
-<%= form_for( new_book, url: new_book_path) do |f| %>
+
+<%= form_for(new_book) do |f| %>
+
+
+<% if new_book.errors.any? %>
+   <div id="erroor_explanation">
+    <h2><%= new_book.errors.count %> errors
+    </h2>
+    <ul>
+    <% new_book.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+    <% end %>
+    </ul>
+
+   </div>
+  <% end %>
+
   <h2>New book</h2>
       <div class="form-group has-icon">
         Title
@@ -36,22 +60,11 @@
         <%= f.text_area :body, class:"form-control" %>
       </div>
 
-    <%= f.submit "create book", class:"btn btn-primary col-xs-12" %>
+    <%= f.submit "Create Book", class:"btn btn-primary col-xs-12" %>
 <% end %>
 
-</div>
 
 
 
-  <% if new_book.errors.any? %>
-   <div id="erroor_explanation">
-    <h2><%= new_book.errors.count %> error
 
-    </h2>
-    <ul>
-    <% new_book.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-    <% end %>
-    </ul>
-   </div>
-  <% end %>
+  </div>
